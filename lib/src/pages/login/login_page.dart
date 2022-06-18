@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'login_controller.dart';
 
 class LoginPage extends StatelessWidget {
+
+  LoginController con = LoginController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +49,7 @@ class LoginPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(30)
       ),
       child: TextField(
+        controller: con.emailController,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
             hintText: '이메일',
@@ -67,6 +72,7 @@ class LoginPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(30)
       ),
       child: TextField(
+        controller: con.passwordController,
         obscureText: true,
         enableSuggestions: false,
         autocorrect: false,
@@ -88,7 +94,7 @@ class LoginPage extends StatelessWidget {
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () => con.login(),
         style: ElevatedButton.styleFrom(
             primary: Colors.black,
             shape: RoundedRectangleBorder(
