@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kojo_app/src/login/login_page.dart';
+import 'package:kojo_app/src/pages/login/login_page.dart';
+import 'package:kojo_app/src/pages/register/register_page.dart';
 import 'package:kojo_app/src/utils/palette.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const KOJO());
@@ -16,16 +18,18 @@ class KOJO extends StatefulWidget {
 class _KOJOState extends State<KOJO> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'KOJO',
       debugShowCheckedModeBanner: false,
-      initialRoute: 'login',
-      routes: {
-        'login': (BuildContext context) => LoginPage()
-      },
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: () => LoginPage()),
+        GetPage(name: '/register', page: () => RegisterPage()),
+      ],
       theme: ThemeData(
         primaryColor: Palette.primary
       ),
+      navigatorKey: Get.key,
     );
   }
 }
